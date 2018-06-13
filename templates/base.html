@@ -8,7 +8,7 @@
           content="{% block meta_description %}{% endblock %}">
 
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Catálogo{% endblock %}</title>
 
     <link
       rel="stylesheet"
@@ -36,20 +36,41 @@
             <span class="icon-bar"></span>
           </button>
           <a href="{{ url_for('index') }}">
-            <h1>Catálogo</h1>
+            <h4>Catálogo</h4>
             <!-- <img src="{{ url_for('static', filename='') }}"
                  class="img-responsive"
                  width="229" height="50" title="Catalogo" alt="Catalogo"/> -->
           </a>
         </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
       </div>
     </nav>
 
     <main class="container">
+    <div class="row">
 
+
+      <div class="col-md-3">
+          <p class="lead">Categorias</p>
+          <div class="list-group">
+              <a href="#" class="list-group-item">Category 1</a>
+              <a href="#" class="list-group-item">Category 2</a>
+              <a href="#" class="list-group-item">Category 3</a>
+          </div>
+      </div>
 
       <div class="md-margin-top">{% block heading %}{% endblock %}</div>
-      {% block body %}{% endblock %}
+      </div>
+        {% block body %}{% endblock %}
     </main>
 
     <footer class="footer text-center">
