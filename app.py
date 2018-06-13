@@ -12,7 +12,8 @@ session = DBSession()
 
 @app.route('/')
 def index():
-    return render_template('base.html')
+    categories = session.query(Category).all()
+    return render_template('base.html', categories = categories)
 
 
 
