@@ -22,6 +22,14 @@
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"
             integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
             crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
+
+
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,10 +44,10 @@
             <span class="icon-bar"></span>
           </button>
           <a href="{{ url_for('showCategory') }}">
-            <h4>Catálogo</h4>
-            <!-- <img src="{{ url_for('static', filename='') }}"
+            <!-- <h4>Catálogo</h4> -->
+            <img src="{{ url_for('static', filename='images/cat_log_5.png') }}"
                  class="img-responsive"
-                 width="229" height="50" title="Catalogo" alt="Catalogo"/> -->
+                 width="140" height="15" title="Catalogo" alt="Catalogo"/>
           </a>
         </div>
 
@@ -63,7 +71,7 @@
           <p class="lead">Categorias</p>
           <div class="list-group">
             {% for category in categories %}
-              <a href="#" class="list-group-item">{{ category.category_name}}</a>
+              <a href="{{ url_for('showItem', category_id = category.id) }}" class="list-group-item">{{ category.category_name}}</a>
             {% endfor %}
           </div>
       </div>

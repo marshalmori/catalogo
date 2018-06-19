@@ -2,6 +2,20 @@
 
 {% block body %}
 <div class="container">
+
+  <!-- Page Header -->
+  <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Itens
+            <small>{{ category.category_name }}</small>
+            <a class="btn btn-primary pull-right" href='{{ url_for('newItem', category_id = category_id) }}'>Novo Item</a>
+            <!-- <button  class="btn btn-primary ">Nova Categoria</button> -->
+        </h1>
+      </div>
+  </div>
+  <!-- /.row -->
+
+
   <div class="row">
 
     {% for item in items %}
@@ -9,12 +23,17 @@
         <div class="thumbnail">
             <img src="http://placehold.it/320x150" alt="">
             <div class="caption">
-                <h4 class="pull-right">{{ item.price}}</h4>
+                <h4 class="pull-right">{{ item.price }}</h4>
                 <h4><a href="#">{{ item.item_name }}</a></h4>
                 <p>{{ item.description }}</p>
             </div>
-            <div class="caption">
+            <!-- <div class="caption">
                 <p class="pull-right"><a href="#">Editar </a><a href="#">| Excluir</a><p>
+            </div> -->
+            <div class="caption">
+                <!-- <p class="pull-right"><a href="#">Editar</a> <a href="#">| Excluir</a><p> -->
+                  <a href='{{ url_for('editItem', category_id = category_id, item_id =item.id) }}' type="button" class="btn btn-success btn-circle" data-toggle="tooltip" data-placement="top" title="Editar Item"><i class="fa fa-edit"></i></a>
+                  <a href='{{ url_for('deleteItem', category_id = category_id, item_id = item.id) }}' type="button" class="btn btn-primary btn-circle pull-right" data-toggle="tooltip" data-placement="top" title="Excluir Item"><i class="fa fa-trash"></i></a>
             </div>
         </div>
     </div>

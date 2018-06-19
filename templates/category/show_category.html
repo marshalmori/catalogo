@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
 <div class="container">
 
     <!-- Page Header -->
@@ -32,8 +31,8 @@
 
               <div class="caption">
                   <!-- <p class="pull-right"><a href="#">Editar</a> <a href="#">| Excluir</a><p> -->
-                    <a href='{{ url_for('editCategory', category_id = category.id) }}' type="button" class="btn btn-info btn-circle"><i class="fa fa-edit"></i></a>
-                    <a href='{{ url_for('deleteCategory', category_id = category.id) }}' type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-trash"></i></a>
+                    <a href='{{ url_for('editCategory', category_id = category.id) }}' type="button" class="btn btn-info btn-circle" data-toggle="tooltip" data-placement="top" title="Editar categoria"><i class="fa fa-edit"></i></a>
+                    <a href='{{ url_for('deleteCategory', category_id = category.id) }}' type="button" class="btn btn-primary btn-circle pull-right" data-toggle="tooltip" data-placement="top" title="Excluir categoria"><i class="fa fa-trash"></i></a>
               </div>
           </div>
       </div>
