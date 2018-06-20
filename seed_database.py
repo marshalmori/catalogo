@@ -16,31 +16,61 @@ user1 = User(username = 'José da Silva', email = 'email1@email.com', picture = 
 session.add(user1)
 session.commit()
 
-category1 = Category(category_name = 'categoria1', user = user1)
+category1 = Category(category_name = 'categoria1', category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user1)
 session.add(category1)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user1, category = category1)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user1,
+             category = category1)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user1, category = category1)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user1,
+             category = category1)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user1, category = category1)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user1,
+             category = category1)
 session.add(item3)
 session.commit()
 
-item4 = Item(item_name = 'item4', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user1, category = category1)
+item4 = Item(item_name = 'item4',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user1,
+             category = category1)
 session.add(item4)
 session.commit()
 
-item5 = Item(item_name = 'item5', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user1, category = category1)
+item5 = Item(item_name = 'item5',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user1,
+             category = category1)
 session.add(item5)
 session.commit()
 
-item6 = Item(item_name = 'item6', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user1, category = category1)
+item6 = Item(item_name = 'item6',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user1,
+             category = category1)
 session.add(item6)
 session.commit()
 
@@ -49,27 +79,52 @@ user2 = User(username = 'Pedro da Silva', email = 'email2@email.com', picture = 
 session.add(user2)
 session.commit()
 
-category2 = Category(category_name = 'categoria2', user = user2)
+category2 = Category(category_name = 'categoria2', category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user2)
 session.add(category2)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user2, category = category2)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user2,
+             category = category2)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user2, category = category2)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user2,
+             category = category2)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user2, category = category2)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user2,
+             category = category2)
 session.add(item3)
 session.commit()
 
-item4 = Item(item_name = 'item4', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user2, category = category2)
+item4 = Item(item_name = 'item4',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user2,
+             category = category2)
 session.add(item4)
 session.commit()
 
-item5 = Item(item_name = 'item5', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user2, category = category2)
+item5 = Item(item_name = 'item5',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user2,
+             category = category2)
 session.add(item5)
 session.commit()
 
@@ -79,27 +134,52 @@ user3 = User(username = 'Carlos da Silva', email = 'email3@email.com', picture =
 session.add(user3)
 session.commit()
 
-category3 = Category(category_name = 'categoria3', user = user3)
+category3 = Category(category_name = 'categoria3', category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user3)
 session.add(category3)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user3, category = category3)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user3,
+             category = category3)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user3, category = category3)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user3,
+             category = category3)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user3, category = category3)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user3,
+             category = category3)
 session.add(item3)
 session.commit()
 
-item4 = Item(item_name = 'item4', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user3, category = category3)
+item4 = Item(item_name = 'item4',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user3,
+             category = category3)
 session.add(item4)
 session.commit()
 
-item5 = Item(item_name = 'item5', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user3, category = category3)
+item5 = Item(item_name = 'item5',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user3,
+             category = category3)
 session.add(item5)
 session.commit()
 
@@ -109,35 +189,70 @@ user4 = User(username = 'Paulo da Silva', email = 'email4@email.com', picture = 
 session.add(user4)
 session.commit()
 
-category4 = Category(category_name = 'categoria4', user = user4)
+category4 = Category(category_name = 'categoria4', category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user4)
 session.add(category4)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user4, category = category4)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user4,
+             category = category4)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user4, category = category4)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user4,
+             category = category4)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user4, category = category4)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user4,
+             category = category4)
 session.add(item3)
 session.commit()
 
-item4 = Item(item_name = 'item4', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user4, category = category4)
+item4 = Item(item_name = 'item4',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user4,
+             category = category4)
 session.add(item4)
 session.commit()
 
-item5 = Item(item_name = 'item5', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user4, category = category4)
+item5 = Item(item_name = 'item5',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user4,
+             category = category4)
 session.add(item5)
 session.commit()
 
-item6 = Item(item_name = 'item6', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user4, category = category4)
+item6 = Item(item_name = 'item6',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user4,
+             category = category4)
 session.add(item6)
 session.commit()
 
-item7 = Item(item_name = 'item7', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user4, category = category4)
+item7 = Item(item_name = 'item7',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user4,
+             category = category4)
 session.add(item7)
 session.commit()
 
@@ -146,35 +261,70 @@ user5 = User(username = 'Ana da Silva', email = 'email5@email.com', picture = 's
 session.add(user5)
 session.commit()
 
-category5 = Category(category_name = 'categoria5', user = user5)
+category5 = Category(category_name = 'categoria5',category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user5)
 session.add(category5)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user5, category = category5)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user5,
+             category = category5)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user5, category = category5)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user5,
+             category = category5)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user5, category = category5)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user5,
+             category = category5)
 session.add(item3)
 session.commit()
 
-item4 = Item(item_name = 'item4', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user5, category = category5)
+item4 = Item(item_name = 'item4',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user5,
+             category = category5)
 session.add(item4)
 session.commit()
 
-item5 = Item(item_name = 'item5', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user5, category = category5)
+item5 = Item(item_name = 'item5',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user5,
+             category = category5)
 session.add(item5)
 session.commit()
 
-item6 = Item(item_name = 'item6', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user5, category = category5)
+item6 = Item(item_name = 'item6',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user5,
+             category = category5)
 session.add(item6)
 session.commit()
 
-item7 = Item(item_name = 'item7', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user5, category = category5)
+item7 = Item(item_name = 'item7',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user5,
+             category = category5)
 session.add(item7)
 session.commit()
 
@@ -184,19 +334,34 @@ user6 = User(username = 'Carla da Silva', email = 'email6@email.com', picture = 
 session.add(user6)
 session.commit()
 
-category6 = Category(category_name = 'categoria6', user = user6)
+category6 = Category(category_name = 'categoria6',category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user6)
 session.add(category6)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user6, category = category6)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user6,
+             category = category6)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user6, category = category6)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user6,
+             category = category6)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user6, category = category6)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user6,
+             category = category6)
 session.add(item3)
 session.commit()
 
@@ -206,18 +371,27 @@ user7 = User(username = 'Tina da Silva', email = 'email7@email.com', picture = '
 session.add(user7)
 session.commit()
 
-category7 = Category(category_name = 'categoria7', user = user7)
+category7 = Category(category_name = 'categoria7',category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user7)
 session.add(category7)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user7, category = category7)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user7,
+             category = category7)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user7, category = category7)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user7,
+             category = category7)
 session.add(item2)
 session.commit()
-
 
 
 # User 8 -----------------------------------------
@@ -225,35 +399,70 @@ user8 = User(username = 'Tatá da Silva', email = 'email8@email.com', picture = 
 session.add(user8)
 session.commit()
 
-category8 = Category(category_name = 'categoria8', user = user8)
+category8 = Category(category_name = 'categoria8',category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user8)
 session.add(category8)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user8, category = category8)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user8,
+             category = category8)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user8, category = category8)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user8,
+             category = category8)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user8, category = category8)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user8,
+             category = category8)
 session.add(item3)
 session.commit()
 
-item4 = Item(item_name = 'item4', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user8, category = category8)
+item4 = Item(item_name = 'item4',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user8,
+             category = category8)
 session.add(item4)
 session.commit()
 
-item5 = Item(item_name = 'item5', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user8, category = category8)
+item5 = Item(item_name = 'item5',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user8,
+             category = category8)
 session.add(item5)
 session.commit()
 
-item6 = Item(item_name = 'item6', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user8, category = category8)
+item6 = Item(item_name = 'item6',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user8,
+             category = category8)
 session.add(item6)
 session.commit()
 
-item7 = Item(item_name = 'item7', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user8, category = category8)
+item7 = Item(item_name = 'item7',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user8,
+             category = category8)
 session.add(item7)
 session.commit()
 
@@ -263,35 +472,70 @@ user9 = User(username = 'Mussum da Silva', email = 'email9@email.com', picture =
 session.add(user9)
 session.commit()
 
-category9 = Category(category_name = 'categoria9', user = user9)
+category9 = Category(category_name = 'categoria9',category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user9)
 session.add(category9)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user9, category = category9)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user9,
+             category = category9)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user9, category = category9)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user9,
+             category = category9)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user9, category = category9)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user9,
+             category = category9)
 session.add(item3)
 session.commit()
 
-item4 = Item(item_name = 'item4', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user9, category = category9)
+item4 = Item(item_name = 'item4',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user9,
+             category = category9)
 session.add(item4)
 session.commit()
 
-item5 = Item(item_name = 'item5', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user9, category = category9)
+item5 = Item(item_name = 'item5',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user9,
+             category = category9)
 session.add(item5)
 session.commit()
 
-item6 = Item(item_name = 'item6', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user9, category = category9)
+item6 = Item(item_name = 'item6',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user9,
+             category = category9)
 session.add(item6)
 session.commit()
 
-item7 = Item(item_name = 'item7', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user9, category = category9)
+item7 = Item(item_name = 'item7',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user9,
+             category = category9)
 session.add(item7)
 session.commit()
 
@@ -301,34 +545,69 @@ user10 = User(username = 'Didi da Silva', email = 'email10@email.com', picture =
 session.add(user10)
 session.commit()
 
-category10 = Category(category_name = 'categoria10', user = user10)
+category10 = Category(category_name = 'categoria10',category_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.', user = user10)
 session.add(category10)
 session.commit()
 
-item1 = Item(item_name = 'item1', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user10, category = category10)
+item1 = Item(item_name = 'item1',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user10,
+             category = category10)
 session.add(item1)
 session.commit()
 
-item2 = Item(item_name = 'item2', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user10, category = category10)
+item2 = Item(item_name = 'item2',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user10,
+             category = category10)
 session.add(item2)
 session.commit()
 
-item3 = Item(item_name = 'item3', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user10, category = category10)
+item3 = Item(item_name = 'item3',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user10,
+             category = category10)
 session.add(item3)
 session.commit()
 
-item4 = Item(item_name = 'item4', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user10, category = category10)
+item4 = Item(item_name = 'item4',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user10,
+             category = category10)
 session.add(item4)
 session.commit()
 
-item5 = Item(item_name = 'item5', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user10, category = category10)
+item5 = Item(item_name = 'item5',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user10,
+             category = category10)
 session.add(item5)
 session.commit()
 
-item6 = Item(item_name = 'item6', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user10, category = category10)
+item6 = Item(item_name = 'item6',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user10,
+             category = category10)
 session.add(item6)
 session.commit()
 
-item7 = Item(item_name = 'item7', description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend.', price = 'R$ 2.99', user = user10, category = category10)
+item7 = Item(item_name = 'item7',
+             item_long_description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+             item_short_description= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.',
+             price = '2.99',
+             user = user10,
+             category = category10)
 session.add(item7)
 session.commit()

@@ -21,6 +21,7 @@ class Category(Base):
 
     id = Column(Integer, primary_key=True)
     category_name = Column(String(32), index=True)
+    category_description = Column(String(100))
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
@@ -29,7 +30,8 @@ class Item(Base):
 
     id = Column(Integer, primary_key=True)
     item_name = Column(String(32), index=True)
-    description = Column(String(250))
+    item_long_description = Column(String(350))
+    item_short_description = Column(String(100))
     price = Column(String(8))
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)

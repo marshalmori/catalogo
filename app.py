@@ -23,7 +23,8 @@ def showCategory():
 @app.route('/category/new/', methods=['GET', 'POST'])
 def newCategory():
     if request.method == 'POST':
-        new_category = Category(category_name=request.form['name'])
+        new_category = Category(category_name=request.form['name'],
+                                category_description=request.form['category_description'])
         session.add(new_category)
         session.commit()
         return redirect(url_for('showCategory'))
@@ -36,6 +37,8 @@ def editCategory(category_id):
     if request.method == 'POST':
         if request.form['name']:
             editedCategory.category_name = request.form['name']
+        if request.form['category_description']:
+            editedCategory.category_name = request.form['category_description']
         session.add(editedCategory)
         session.commit()
         return redirect(url_for('showCategory'))
@@ -66,7 +69,8 @@ def newItem(category_id):
     if request.method == 'POST':
         newItem = Item(item_name=request.form['name'],
                        price=request.form['price'],
-                       description=request.form['description'],
+                       long_description=request.form['long_description'],
+                       short_description=request.form['short_description'],
                        category_id = category_id)
         session.add(newItem)
         session.commit()
@@ -83,8 +87,10 @@ def editItem(category_id, item_id):
             editedItem.item_name = request.form['name']
         if request.form['price']:
             editedItem.price = request.form['price']
-        if request.form['description']:
-            editedItem.description = request.form['description']
+        if request.form['long_description']:
+            editedItem.description = request.form['long_description']
+        if request.form['short_description']:
+            editedItem.description = request.form['short_description']
         session.add(editedItem)
         session.commit()
         return redirect(url_for('showItem', category_id = category_id))
