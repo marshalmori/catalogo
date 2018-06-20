@@ -102,7 +102,11 @@ def deleteItem(category_id, item_id):
     else:
         return render_template('item/delete_item.html', category_id = category_id, item_id = item_id, categories = categories, items=deletedItem)
 
-
+@app.route('/category/<int:category_id>/item/<int:item_id>/description/', methods=['GET', 'POST'])
+def descriptionItem(category_id, item_id):
+    categories = session.query(Category).all()
+    item = session.query(Item).filter_by(id = item_id).one()
+    return render_template('item/description_item.html', category_id = category_id, categories = categories, item_id = item_id, item = item)
 
 if __name__ == '__main__':
     app.debug = True
