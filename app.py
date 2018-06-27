@@ -1,7 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, abort, g
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Category, Item
+from flask_httpauth import HTTPBasicAuth
+
+auth = HTTPBasicAuth()
 
 # Create category with curl
 # curl -X POST "http://localhost:5000/category/api?category_name=MARSHAL&category_description=CAVALHEIRO"
@@ -13,29 +16,52 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-# ======== Start API Endpoint ===================
-@app.route('/user/api', methods=['GET', 'POST'])
-def userFunction():
-    if request.method == 'GET':
-        return getAllUsers()
-    if request.method == 'POST':
-        username = request.args.get('username', '')
-        email = request.args.get('email', '')
-        picture = request.args.get('picture', '')
-        return newUser(username, email, picture)
+@auth.verify_password
+def verify_password(email, password):
+    user = session.query(User).filter_by(email = email).first()
+    if not user or not user.verify_password(password):
+        return False
+    g.user = user
+    return True
 
+# ======== Start API Endpoint ===================
+# @app.route('/user/api', methods=['GET', 'POST'])
+# @auth.login_required
+# def userFunction():
+#     if request.method == 'POST':
+#         username = request.json.get('username')
+#         email = request.json.get('email')
+#         password = request.json.get('password')
+#         picture = request.json.get('picture')
+#         return newUserApi(username, email, password, picture)
+
+@app.route('/user/api', methods=['GET'])
 def getAllUsers():
     users = session.query(User).all()
     return jsonify(Users=[i.serialize for i in users])
 
-def newUser(username, email, picture):
+@app.route('/user/api', methods=['POST'])
+def newUserApi():
+    username = request.json.get('username')
+    email = request.json.get('email')
+    password = request.json.get('password')
+    picture = request.json.get('picture')
+    if email is None or password is None:
+        print('Faltando argumentos: password/senha')
+        abort(400)
+    if session.query(User).filter_by(email = email).first() is not None:
+        print('E-mail já cadastrado.')
+        user = session.query(User).filter_by(email = email).first()
+        return jsonify({'message': 'Usuário já cadastrado'}), 200
     user = User(username = username, email = email, picture = picture)
+    user.hash_password(password)
     session.add(user)
     session.commit()
-    return jsonify(User=user.serialize)
+    return jsonify({'username': user.username, 'email': user.email, 'picture': user.picture}), 201
 
 
 @app.route('/user/api/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
+@auth.login_required
 def userFunctionId(user_id):
     if request.method == 'GET':
         return getUser(user_id)
@@ -49,7 +75,9 @@ def userFunctionId(user_id):
 
 def getUser(user_id):
     user = session.query(User).filter_by(id = user_id).one()
-    return jsonify(User=user.serialize)
+    if not user:
+        abort(400)
+    return jsonify({'username': user.username, 'email': user.email})
 
 def updateUser(user_id, username, email, picture):
     updatedUser = session.query(User).filter_by(id = user_id).one()
@@ -123,9 +151,16 @@ def delCategory(category_id):
 
 # ======== End API Endpoint ===================
 
+# Aqui tem que mudar de /category/login para somente /login
 @app.route('/category/login')
 def login():
     return render_template('login.html')
+
+# @app.route('/users', methods = ['POST'])
+# def newUser():
+#     email = request.form['email']
+#     password = request.form['password']
+
 
 @app.route('/')
 @app.route('/category/')
