@@ -13,24 +13,35 @@ auth = HTTPBasicAuth()
 # curl -i -X POST -H "Content-Type: application/json" -d '{"username":"Marshal","email": "marshalmori@gmail.com", "password":"1234", "picture":"/home/marshal"}' http://localhost:5000/user/api
 # Cadastro de um segundo usuário padrão via API - newUserApi()
 # curl -i -X POST -H "Content-Type: application/json" -d '{"username":"Tsukuru","email": "tsukuru@gmail.com", "password":"tsukuru", "picture":"/home/tsukuru"}' http://localhost:5000/user/api
-# Fazendo a requisição das informações de um usuário específico- getUser(user_id)
+# Faz a requisição das informações de um usuário específico- getUser(user_id)
 # curl -u marshalmori@gmail.com:1234 -i -X GET http://localhost:5000/user/api/11
-# Fazendo update do username e picture do usuário - updateUser(user_id)
+# Faz update do username e picture do usuário - updateUser(user_id)
 # curl -u tsukuru@gmail.com:tsukuru -i -X PUT -H "Content-Type: application/json" -d '{"username":"Tasaki", "picture":"/home/tasaki"}' http://localhost:5000/user/api/12
-# Fazendo o delete de um usuário
+# Faz o delete de um usuário
 # curl -u tsukuru@gmail.com:tsukuru -i -X DELETE http://localhost:5000/user/api/12
 
 # CATEGORIA - Category
 # Requisição de todas as categorias - getAllCategories()
 # curl -u marshalmori@gmail.com:1234 -X GET http://localhost:5000/category/api
-# Criando uma nova categoria
+# Cria uma nova categoria
 # curl -u marshalmori@gmail.com:1234 -i -X POST -H "Content-Type: application/json" -d '{"category_name":"Outra Categoria", "category_description":"Uma descrição qualquer aqui"}' http://localhost:5000/category/api/12
-# Fazendo a requisição de uma categoria específica - getCategory(category_id)
+# Faz a requisição de uma categoria específica - getCategory(category_id)
 # curl -u marshalmori@gmail.com:1234 http://localhost:5000/category/api/1
-# Fazendo update na categoria e na descrição da categoria - updateCategory(category_id)
+# Faz update na categoria e na descrição da categoria - updateCategory(category_id)
 # curl -u marshalmori@gmail.com:1234 -X PUT -H "Content-Type: application/json" -d '{"category_name":"Tasaki", "category_description":"Categoria alterada para Tasaki"}' http://localhost:5000/category/api/12
-# Deletando uma categoria - delCategory(category_id)
+# Deleta uma categoria - delCategory(category_id)
 # curl -u marshalmori@gmail.com:1234 -i -X DELETE http://localhost:5000/category/api/12
+
+# ITEM - Item
+# Requisição de todos os itens
+# curl -u marshalmori@gmail.com:1234 -X GET http://localhost:5000/item/api
+# Requisiçao de todos os itens de uma determinada categoria
+# curl -u marshalmori@gmail.com:1234 -X POST http://localhost:5000/item/api/1
+# Update de um item específico - updateItem(item_id)
+# curl -u marshalmori@gmail.com:1234 -X PUT -H "Content-Type: application/json" -d '{"item_name":"Tasaki", "item_long_description":"CCCCCCCCCCCCCC CCCCCCCC CCCCCCCCC CCCCCCCCCCCCCCCC CCCCCCCCCCCC CCCCCCCCCC", "item_short_description":"CCCCCC CCCCCC CCCCC CCC", "price":"70.00"}' http://localhost:5000/item/api/1
+# Exclui um item específico
+# curl -u marshalmori@gmail.com:1234 -X DELETE http://localhost:5000/item/api/1
+
 
 app = Flask(__name__)
 
@@ -160,6 +171,47 @@ def delCategory(category_id):
 def getAllItems():
     items = session.query(Item).all()
     return jsonify(Items=[i.serialize for i in items])
+
+@app.route('/item/api/<int:category_id>', methods=['POST'])
+@auth.login_required
+def getItems(category_id):
+    category = session.query(Category).filter_by(id = category_id).one()
+    items = session.query(Item).filter_by(category_id = category.id).all()
+    return jsonify(Items=[i.serialize for i in items])
+
+@app.route('/item/api/<int:item_id>', methods=['PUT'])
+@auth.login_required
+def updateItem(item_id):
+    item = session.query(Item).filter_by(id = item_id).one()
+    item_name = request.json.get('item_name')
+    item_long_description = request.json.get('item_long_description')
+    item_short_description = request.json.get('item_short_description')
+    price = request.json.get('price')
+    if item_name:
+        item.item_name = item_name
+    if item_long_description:
+        item.item_long_description = item_long_description
+    if item_short_description:
+        item.item_short_description = item_short_description
+    if price:
+        item.price = price
+    session.add(item)
+    session.commit()
+    return jsonify({'item_name': item.item_name,
+                    'item_long_description': item.item_long_description,
+                    'item_short_description': item.item_short_description,
+                    'price': item.price})
+
+@app.route('/item/api/<int:item_id>', methods=['DELETE'])
+@auth.login_required
+def delItem(item_id):
+    item = session.query(Item).filter_by(id = item_id).one()
+    session.delete(item)
+    session.commit()
+    return 'O item com o id %s foi excluído com sucesso.' %item_id
+
+
+
 
 # ======== End API Endpoint ===================
 
