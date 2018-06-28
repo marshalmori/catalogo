@@ -6,8 +6,31 @@ from flask_httpauth import HTTPBasicAuth
 
 auth = HTTPBasicAuth()
 
-# Create category with curl
-# curl -X POST "http://localhost:5000/category/api?category_name=MARSHAL&category_description=CAVALHEIRO"
+# # USUÁRIO - User
+# Requisição de todos os usuários  - getAllUsers()
+# curl -u marshalmori@gmail.com:1234 -X GET http://localhost:5000/user/api
+# Cadastro de um novo usuário padrão via API - newUserApi()
+# curl -i -X POST -H "Content-Type: application/json" -d '{"username":"Marshal","email": "marshalmori@gmail.com", "password":"1234", "picture":"/home/marshal"}' http://localhost:5000/user/api
+# Cadastro de um segundo usuário padrão via API - newUserApi()
+# curl -i -X POST -H "Content-Type: application/json" -d '{"username":"Tsukuru","email": "tsukuru@gmail.com", "password":"tsukuru", "picture":"/home/tsukuru"}' http://localhost:5000/user/api
+# Fazendo a requisição das informações de um usuário específico- getUser(user_id)
+# curl -u marshalmori@gmail.com:1234 -i -X GET http://localhost:5000/user/api/11
+# Fazendo update do username e picture do usuário - updateUser(user_id)
+# curl -u tsukuru@gmail.com:tsukuru -i -X PUT -H "Content-Type: application/json" -d '{"username":"Tasaki", "picture":"/home/tasaki"}' http://localhost:5000/user/api/12
+# Fazendo o delete de um usuário
+# curl -u tsukuru@gmail.com:tsukuru -i -X DELETE http://localhost:5000/user/api/12
+
+# CATEGORIA - Category
+# Requisição de todas as categorias - getAllCategories()
+# curl -u marshalmori@gmail.com:1234 -X GET http://localhost:5000/category/api
+# Criando uma nova categoria
+# curl -u marshalmori@gmail.com:1234 -i -X POST -H "Content-Type: application/json" -d '{"category_name":"Outra Categoria", "category_description":"Uma descrição qualquer aqui"}' http://localhost:5000/category/api/12
+# Fazendo a requisição de uma categoria específica - getCategory(category_id)
+# curl -u marshalmori@gmail.com:1234 http://localhost:5000/category/api/1
+# Fazendo update na categoria e na descrição da categoria - updateCategory(category_id)
+# curl -u marshalmori@gmail.com:1234 -X PUT -H "Content-Type: application/json" -d '{"category_name":"Tasaki", "category_description":"Categoria alterada para Tasaki"}' http://localhost:5000/category/api/12
+# Deletando uma categoria - delCategory(category_id)
+# curl -u marshalmori@gmail.com:1234 -i -X DELETE http://localhost:5000/category/api/12
 
 app = Flask(__name__)
 
@@ -25,17 +48,8 @@ def verify_password(email, password):
     return True
 
 # ======== Start API Endpoint ===================
-# @app.route('/user/api', methods=['GET', 'POST'])
-# @auth.login_required
-# def userFunction():
-#     if request.method == 'POST':
-#         username = request.json.get('username')
-#         email = request.json.get('email')
-#         password = request.json.get('password')
-#         picture = request.json.get('picture')
-#         return newUserApi(username, email, password, picture)
-
 @app.route('/user/api', methods=['GET'])
+@auth.login_required
 def getAllUsers():
     users = session.query(User).all()
     return jsonify(Users=[i.serialize for i in users])
@@ -59,81 +73,70 @@ def newUserApi():
     session.commit()
     return jsonify({'username': user.username, 'email': user.email, 'picture': user.picture}), 201
 
-
-@app.route('/user/api/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/user/api/<int:user_id>', methods=['GET'])
 @auth.login_required
-def userFunctionId(user_id):
-    if request.method == 'GET':
-        return getUser(user_id)
-    if request.method == 'PUT':
-        username = request.args.get('username')
-        email = request.args.get('email')
-        picture = request.args.get('picture')
-        return updateUser(user_id, username, email, picture)
-    if request.method == 'DELETE':
-        return deleteUser(user_id)
-
 def getUser(user_id):
     user = session.query(User).filter_by(id = user_id).one()
     if not user:
         abort(400)
-    return jsonify({'username': user.username, 'email': user.email})
+    return jsonify({'id': user.id,
+                    'username': user.username,
+                    'email': user.email,
+                    'picture': user.picture})
 
-def updateUser(user_id, username, email, picture):
+@app.route('/user/api/<int:user_id>', methods=['PUT'])
+@auth.login_required
+def updateUser(user_id):
+    username = request.json.get('username')
+    picture = request.json.get('picture')
     updatedUser = session.query(User).filter_by(id = user_id).one()
     if username:
         updatedUser.username = username
-    if email:
-        updatedUser.email = email
     if picture:
         updatedUser.picture = picture
     session.add(updatedUser)
     session.commit()
     return 'Usuário de id: %s atualizado com sucesso' % user_id
 
+@app.route('/user/api/<int:user_id>', methods=['DELETE'])
+@auth.login_required
 def deleteUser(user_id):
     deletedUser = session.query(User).filter_by(id=user_id).one()
     session.delete(deletedUser)
     session.commit()
     return 'Usuário de id: %s foi excluido com sucesso.' % user_id
 
-@app.route('/category/api', methods=['GET', 'POST'])
-def categoryFunction():
-    if request.method == 'GET':
-        return getAllCategories()
-    elif request.method == 'POST':
-        category_name = request.args.get('category_name', '')
-        category_description = request.args.get('category_description', '')
-        # Tem que capturar o id do usuário e passar para o user_id
-        return makeNewCategory(category_name, category_description)
-
+@app.route('/category/api', methods=['GET'])
+@auth.login_required
 def getAllCategories():
     categories = session.query(Category).all()
     return jsonify(Categories=[i.serialize for i in categories])
 
-def makeNewCategory(category_name, category_description):
+@app.route('/category/api/<int:user_id>', methods=['POST'])
+@auth.login_required
+def makeNewCategory(user_id):
+    category_name = request.json.get('category_name')
+    category_description = request.json.get('category_description')
     category = Category(category_name = category_name,
-                        category_description = category_description)
+                        category_description = category_description,
+                        user_id = user_id)
     session.add(category)
     session.commit()
-    return jsonify(Category=category.serialize)
+    return jsonify({'category_name': category.category_name,
+                    'category_description': category.category_description,
+                    'user_id': category.user_id})
 
-@app.route('/category/api/<int:category_id>', methods=['GET', 'PUT', 'DELETE'])
-def categoryFunctionId(category_id):
-    if request.method == 'GET':
-        return getCategory(category_id)
-    if request.method == 'PUT':
-        category_name = request.args.get('category_name', '')
-        category_description = request.args.get('category_description', '')
-        return updateCategory(category_id, category_name, category_description)
-    elif request.method == 'DELETE':
-        return delCategory(category_id)
-
+@app.route('/category/api/<int:category_id>', methods=['GET'])
+@auth.login_required
 def getCategory(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
     return jsonify(Category=category.serialize)
 
-def updateCategory(category_id, category_name, category_description):
+@app.route('/category/api/<int:category_id>', methods=['PUT'])
+@auth.login_required
+def updateCategory(category_id):
+    category_name = request.json.get('category_name')
+    category_description = request.json.get('category_description')
     category = session.query(Category).filter_by(id = category_id).one()
     if category_name:
         category.category_name = category_name
@@ -141,13 +144,22 @@ def updateCategory(category_id, category_name, category_description):
         category.category_description = category_description
     session.add(category)
     session.commit()
-    return 'Categoria alterada com sucesso %s' % category_id
+    return jsonify({'category_name': category.category_name,
+                    'category_description': category.category_description})
 
+@app.route('/category/api/<int:category_id>', methods=['DELETE'])
+@auth.login_required
 def delCategory(category_id):
     deletedCategory = session.query(Category).filter_by(id = category_id).one()
     session.delete(deletedCategory)
     session.commit()
     return 'Categoria de id: %s excluída com sucesso' % category_id
+
+@app.route('/item/api', methods=['GET'])
+@auth.login_required
+def getAllItems():
+    items = session.query(Item).all()
+    return jsonify(Items=[i.serialize for i in items])
 
 # ======== End API Endpoint ===================
 
