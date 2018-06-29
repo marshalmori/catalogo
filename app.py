@@ -214,16 +214,38 @@ def delItem(item_id):
 
 # ======== End API Endpoint ===================
 
-# Aqui tem que mudar de /category/login para somente /login
-@app.route('/category/login')
+@app.route('/login')
 def login():
     return render_template('login.html')
 
-# @app.route('/users', methods = ['POST'])
-# def newUser():
-#     email = request.form['email']
-#     password = request.form['password']
 
+@app.route('/user', methods=['GET','POST'])
+def new_user():
+    if request.method == 'POST':
+        username = request.form['name']
+        email = request.form['email']
+        confirma_email = request.form['confirma_email']
+        password = request.form['password']
+        confirma_password = request.form['confirma_password']
+
+        if username is '':
+            flash('O campo Nome completo não foi preenchido!')
+        if email != confirma_email:
+            flash('Os emails digitados são diferentes!')
+        if password != confirma_password:
+            flash('As senhas digitadas são diferentes!')
+        if session.query(User).filter_by(email = email).first() is not None:
+            flash('O email digitado já está cadastrado!')
+        else:
+            user = User(username = username, email = email, picture = '')
+            user.hash_password(password)
+            session.add(user)
+            session.commit()
+            flash('Novo usuário criado com sucesso!')
+            return redirect(url_for('showCategory'))
+        return render_template('new_account.html')
+    else:
+        return render_template('new_account.html')
 
 @app.route('/')
 @app.route('/category/')
