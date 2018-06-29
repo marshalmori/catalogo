@@ -42,7 +42,6 @@
             <span class="icon-bar"></span>
           </button>
           <a href="{{ url_for('showCategory') }}">
-            <!-- <h4>Catálogo</h4> -->
             <img src="{{ url_for('static', filename='images/cat_log_5.png') }}"
                  class="img-responsive"
                  width="140" height="15" title="Catalogo" alt="Catalogo"/>
@@ -64,16 +63,20 @@
     <main class="container">
     <div class="row">
 
-
-      <!-- <div class="col-md-3">
-          <p class="lead">Categorias</p>
-          <div class="list-group">
-            {% for category in categories %}
-              <a href="#" class="list-group-item">{{ category.category_name}}</a>
+      <div>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+                <div class="panel-body">
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message }}
+                    </div>
+                </div>
             {% endfor %}
-          </div>
-      </div> -->
-
+          {% endif %}
+        {% endwith %}
+      </div>
       <div class="md-margin-top">{% block heading %}{% endblock %}</div>
       </div>
         {% block body %}{% endblock %}

@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, abort, g
+from flask import (Flask, render_template, request, redirect, url_for,
+                   jsonify, abort, g, flash)
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Category, Item
@@ -42,7 +43,6 @@ auth = HTTPBasicAuth()
 # Exclui um item específico
 # curl -u marshalmori@gmail.com:1234 -X DELETE http://localhost:5000/item/api/1
 
-
 app = Flask(__name__)
 
 engine = create_engine('sqlite:///catalogo.db', connect_args={'check_same_thread': False})
@@ -82,7 +82,9 @@ def newUserApi():
     user.hash_password(password)
     session.add(user)
     session.commit()
-    return jsonify({'username': user.username, 'email': user.email, 'picture': user.picture}), 201
+    return jsonify({'username': user.username,
+                    'email': user.email,
+                    'picture': user.picture}), 201
 
 @app.route('/user/api/<int:user_id>', methods=['GET'])
 @auth.login_required
@@ -210,9 +212,6 @@ def delItem(item_id):
     session.commit()
     return 'O item com o id %s foi excluído com sucesso.' %item_id
 
-
-
-
 # ======== End API Endpoint ===================
 
 # Aqui tem que mudar de /category/login para somente /login
@@ -239,6 +238,7 @@ def newCategory():
                                 category_description=request.form['category_description'])
         session.add(new_category)
         session.commit()
+        flash('Categoria criada com sucesso!')
         return redirect(url_for('showCategory'))
     else:
         return render_template('category/new_category.html')
@@ -253,6 +253,7 @@ def editCategory(category_id):
             editedCategory.category_description = request.form['category_description']
         session.add(editedCategory)
         session.commit()
+        flash('Categoria editada com sucesso!')
         return redirect(url_for('showCategory'))
     else:
         return render_template('category/edit_category.html', category_id = category_id, category = editedCategory)
@@ -263,6 +264,7 @@ def deleteCategory(category_id):
     if request.method == 'POST':
         session.delete(deletedCategory)
         session.commit()
+        flash('Categoria excluída com sucesso!')
         return redirect(url_for('showCategory'))
     else:
         return render_template('category/delete_category.html', category_id = category_id, category = deletedCategory)
@@ -286,6 +288,7 @@ def newItem(category_id):
                        category_id = category_id)
         session.add(newItem)
         session.commit()
+        flash('Item criado com sucesso!')
         return redirect(url_for('showItem', category_id = category_id))
     else:
         return render_template('item/new_item.html', categories = categories, category_id = category_id)
@@ -305,6 +308,7 @@ def editItem(category_id, item_id):
             editedItem.item_short_description = request.form['short_description']
         session.add(editedItem)
         session.commit()
+        flash('Item editado com sucesso!')
         return redirect(url_for('showItem', category_id = category_id))
     else:
         return render_template('item/edit_item.html', category_id= category_id, item_id = item_id, categories = categories, items = editedItem)
@@ -316,6 +320,7 @@ def deleteItem(category_id, item_id):
     if request.method == 'POST':
         session.delete(deletedItem)
         session.commit()
+        flash('Item excluído com sucesso!')
         return redirect(url_for('showItem', category_id = category_id))
     else:
         return render_template('item/delete_item.html', category_id = category_id, item_id = item_id, categories = categories, items=deletedItem)
@@ -328,5 +333,6 @@ def descriptionItem(category_id, item_id):
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host = '0.0.0.0', port = 5000)
