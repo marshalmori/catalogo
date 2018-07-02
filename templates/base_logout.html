@@ -22,17 +22,18 @@
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"
             integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
             crossorigin="anonymous"></script>
-
     <script type="text/javascript">
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })
     </script>
+
     <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
     <script src="//apis.google.com/js/platform.js?onload=start"> </script>
     <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -47,7 +48,6 @@
             <span class="icon-bar"></span>
           </button>
           <a href="{{ url_for('showCategory') }}">
-            <!-- <h4>Catálogo</h4> -->
             <img src="{{ url_for('static', filename='images/cat_log_5.png') }}"
                  class="img-responsive"
                  width="140" height="15" title="Catalogo" alt="Catalogo"/>
@@ -57,15 +57,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              {% if 'username' not in session %}
                 <li>
-                    <a href="{{ url_for('showLogin')}}">Login</a>
+                    <a href="{{ url_for('showLogin')}}">Logout</a>
                 </li>
-              {% else %}
-                <li>
-                    <a href="{{ url_for('disconnect')}}">Logout</a>
-                </li>
-              {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -77,8 +71,9 @@
       </div>
     </nav>
 
-
     <main class="container">
+    <div class="row">
+
       <div>
         {% with messages = get_flashed_messages() %}
           {% if messages %}
@@ -93,22 +88,9 @@
           {% endif %}
         {% endwith %}
       </div>
-    <div class="row">
-      <div class="col-md-3">
-          <p class="lead">Categorias</p>
-          <div class="list-group">
-            {% for category in categories %}
-              <a href="{{ url_for('showItem', category_id = category.id) }}" class="list-group-item">{{ category.category_name}}</a>
-            {% endfor %}
-          </div>
-      </div>
-
-
       <div class="md-margin-top">{% block heading %}{% endblock %}</div>
-        <div class="col-md-9">
-            {% block body %}{% endblock %}
-        </div>
       </div>
+        {% block body %}{% endblock %}
     </main>
 
     <footer class="footer text-center">

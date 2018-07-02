@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title" align='center'>Faça seu Acesso</h3>
+                    <h3 class="panel-title" align='center'>Faça o Acesso Usando sua Conta Google</h3>
                 </div>
                 <div class="panel-body">
                   <p align='center'>
-                    <!-- <i class="fa fa-user" style='font-size:100px' align='center'></i> -->
                     <img src="{{ url_for('static', filename='images/cat_logo_preto.png') }}"
                          class="img-responsive"
                          width="100" height="100" title="Logo" alt="Catalogo"/>
                   </p>
-                    <form role="form">
+                    <!-- <form role="form">
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
@@ -23,13 +23,70 @@
                             <div class="form-group">
                                 <input class="form-control" placeholder="Senha" name="password" type="password" value="">
                             </div>
-                            <!-- Change this to a button or input when using this as a form -->
-                            <a href="index.html" class="btn btn-lg btn-primary btn-block">Entrar</a>
+                            <a href="#" class="btn btn-lg btn-primary btn-block">Entrar</a>
                         </fieldset>
-                    </form>
+                    </form> -->
+                </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title" align='center'>Faça seu Acesso</h3>
+                </div>
+                <div class="panel-body">
+                  <form role="form">
+                      <fieldset>
+                        <!-- GOOGLE PLUS SIGN IN-->
+                        <div id="signinButton" class="btn btn-lg btn-block">
+                          <span class="g-signin"
+                            data-scope="openid email"
+                            data-clientid="408983639364-b50qnuugi7fp61fs4pcl1erd67qslkra.apps.googleusercontent.com"
+                            data-redirecturi="postmessage"
+                            data-accesstype="offline"
+                            data-cookiepolicy="single_host_origin"
+                            data-callback="signInCallback"
+                            data-approvalprompt="force">
+                          </span>
+                      </div>
+
+                        <div id="result"></div>
+
+                      <script>
+                      function signInCallback(authResult) {
+                        if (authResult['code']) {
+                          // Hide the sign-in button now that the user is authorized
+                          $('#signinButton').attr('style', 'display: none');
+                          // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+                          $.ajax({
+                            type: 'POST',
+                            url: '/gconnect?state={{STATE}}',
+                            processData: false,
+                            data: authResult['code'],
+                            contentType: 'application/octet-stream; charset=utf-8',
+                            success: function(result) {
+                              // Handle or verify the server response if necessary.
+                              if (result) {
+                                $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+                               setTimeout(function() {
+                                window.location.href = "/category";
+                               }, 4000);
+
+                            } else if (authResult['error']) {
+                          console.log('There was an error: ' + authResult['error']);
+                        } else {
+                              $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                               }
+                            }
+
+                        }); } }
+                      </script>
+
+                      <!--END GOOGLE PLUS SIGN IN -->
+                      </fieldset>
+                  </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 {% endblock %}
