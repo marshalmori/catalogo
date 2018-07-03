@@ -28,13 +28,25 @@
                 <h4><a href="{{ url_for('descriptionItem', category_id = category_id, item_id = item.id) }}">{{ item.item_name }}</a></h4>
                 <p>{{ item.item_short_description }}</p>
             </div>
-            <!-- <div class="caption">
-                <p class="pull-right"><a href="#">Editar </a><a href="#">| Excluir</a><p>
-            </div> -->
+
             <div class="caption">
-                <!-- <p class="pull-right"><a href="#">Editar</a> <a href="#">| Excluir</a><p> -->
-                  <a href='{{ url_for('editItem', category_id = category_id, item_id =item.id) }}' type="button" class="btn btn-success btn-circle" data-toggle="tooltip" data-placement="top" title="Editar Item"><i class="fa fa-edit"></i></a>
-                  <a href='{{ url_for('deleteItem', category_id = category_id, item_id = item.id) }}' type="button" class="btn btn-primary btn-circle pull-right" data-toggle="tooltip" data-placement="top" title="Excluir Item"><i class="fa fa-trash"></i></a>
+              <a href='{{ url_for('editItem', category_id = category_id,
+                 item_id =item.id) }}'
+                 type="button"
+                 class="btn btn-success btn-circle"
+                 data-toggle="tooltip"
+                 data-placement="top" title="Editar Item">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href='{{ url_for('deleteItem', category_id = category_id,
+                 item_id = item.id) }}'
+                 type="button"
+                 class="btn btn-primary btn-circle pull-right"
+                 data-toggle="tooltip"
+                 data-placement="top"
+                 title="Excluir Item">
+                 <i class="fa fa-trash"></i>
+               </a>
             </div>
         </div>
     </div>
