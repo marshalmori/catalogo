@@ -2,20 +2,14 @@
 
 {% block body %}
 <div class="container">
-
-    <!-- Page Header -->
     <div class="row">
         <div class="col-lg-12">
           <h1 class="page-header">Catálogo
               <small>Conheça Nossos Produtos</small>
               <a class="btn btn-primary pull-right" href='{{ url_for('newCategory') }}'>Nova Categoria</a>
-              <!-- <button  class="btn btn-primary ">Nova Categoria</button> -->
           </h1>
         </div>
     </div>
-    <!-- /.row -->
-
-    <!-- Projects Row -->
     <div class="row">
       {% for category in categories %}
       <div class="col-md-4 portfolio-item">
@@ -24,21 +18,15 @@
               <img class="img-responsive" src="http://placehold.it/700x400" alt="">
           </a>
           <h3>
-              <a href='{{ url_for('showItem', category_id = category.id) }}'>{{ category.category_name }}</a>
-              <!-- <p class="pull-right"><h5><a href="#">Editar</a> <a href="#">| Deletar</a></h5><p> -->
+            <a href='{{ url_for('showItem', category_id = category.id) }}'>{{ category.category_name }}</a>
           </h3>
           <p>{{category.category_description}}</p>
-
-              <div class="caption">
-                  <!-- <p class="pull-right"><a href="#">Editar</a> <a href="#">| Excluir</a><p> -->
-                    <a href='{{ url_for('editCategory', category_id = category.id) }}' type="button" class="btn btn-info btn-circle" data-toggle="tooltip" data-placement="top" title="Editar categoria"><i class="fa fa-edit"></i></a>
-                    <a href='{{ url_for('deleteCategory', category_id = category.id) }}' type="button" class="btn btn-primary btn-circle pull-right" data-toggle="tooltip" data-placement="top" title="Excluir categoria"><i class="fa fa-trash"></i></a>
-              </div>
+            <div class="caption">
+              <a href='{{ url_for('editCategory', category_id = category.id) }}' type="button" class="btn btn-info btn-circle" data-toggle="tooltip" data-placement="top" title="Editar categoria"><i class="fa fa-edit"></i></a>
+              <a href='{{ url_for('deleteCategory', category_id = category.id) }}' type="button" class="btn btn-primary btn-circle pull-right" data-toggle="tooltip" data-placement="top" title="Excluir categoria"><i class="fa fa-trash"></i></a>
+            </div>
           </div>
       </div>
       {% endfor %}
-
 </div>
-<!-- /.container -->
-
 {% endblock %}

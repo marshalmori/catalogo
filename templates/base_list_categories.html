@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
           content="{% block meta_description %}{% endblock %}">
-
-
     <title>{% block title %}Catálogo{% endblock %}</title>
-
     <link
       rel="stylesheet"
       href="{{ url_for('static',
@@ -24,7 +21,6 @@
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"
             integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
             crossorigin="anonymous"></script>
-
     <script type="text/javascript">
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
@@ -33,7 +29,6 @@
     <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
     </script>
-
     <script src="//apis.google.com/js/platform.js?onload=start"> </script>
     <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
   </head>
@@ -50,14 +45,11 @@
             <span class="icon-bar"></span>
           </button>
           <a href="{{ url_for('showCategory') }}">
-            <!-- <h4>Catálogo</h4> -->
             <img src="{{ url_for('static', filename='images/cat_log_5.png') }}"
                  class="img-responsive"
                  width="140" height="15" title="Catalogo" alt="Catalogo"/>
           </a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               {% if 'username' not in session %}
@@ -81,10 +73,8 @@
               {% endif %}
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
       </div>
     </nav>
-
     <main class="container">
       <div>
         {% with messages = get_flashed_messages() %}
@@ -113,15 +103,12 @@
             {% endfor %}
           </div>
       </div>
-
-
       <div class="md-margin-top">{% block heading %}{% endblock %}</div>
         <div class="col-md-9">
             {% block body %}{% endblock %}
         </div>
       </div>
     </main>
-
     <footer class="footer text-center">
       <div class="container">
         <ul class="list-inline">
@@ -132,7 +119,6 @@
         </ul>
       </div>
     </footer>
-
     <script
       src="{{ url_for('static', filename='scripts/vendor/bootstrap.min.js') }}">
     </script>

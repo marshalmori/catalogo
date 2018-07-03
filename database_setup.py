@@ -6,10 +6,13 @@ from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine
 from passlib.apps import custom_app_context as pwd_context
 
+# Nesse arquivo temos 3 classes que geram o banco de dados
+# com as tabelas user, category e item
 Base = declarative_base()
 
-
+# Classe que gera a tabela user.
 class User(Base):
+    '''Classe para criar os campos da tabela dos usuários'''
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
@@ -26,7 +29,7 @@ class User(Base):
 
     @property
     def serialize(self):
-        '''Return object data in easily serializeable format'''
+        '''Retorna os dados de um objeto serializado'''
         return {
             'id':       self.id,
             'username': self.username,
@@ -34,7 +37,9 @@ class User(Base):
             'picture':  self.picture
         }
 
+# Classe que gera a tabela category.
 class Category(Base):
+    '''Classe para criar os campos da tabela das categorias'''
     __tablename__ = 'category'
 
     id = Column(Integer, primary_key=True)
@@ -45,7 +50,7 @@ class Category(Base):
 
     @property
     def serialize(self):
-        '''Return object data in easily serializable format'''
+        '''Retorna os dados de um objeto serializado'''
         return {
             'id':                   self.id,
             'category_name':        self.category_name,
@@ -53,8 +58,9 @@ class Category(Base):
             'user_id':              self.user_id
         }
 
-
+# Classe que gera a tabela item.
 class Item(Base):
+    '''Classe para criar os campos da tabela dos itens'''
     __tablename__ = 'item'
 
     id = Column(Integer, primary_key=True)
@@ -69,7 +75,7 @@ class Item(Base):
 
     @property
     def serialize(self):
-        '''Return object data in easily serializeable format'''
+        '''Retorna os dados de um objeto serializado'''
         return {
             'id': self.id,
             'item_name': self.item_name,
