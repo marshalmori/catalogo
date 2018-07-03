@@ -53,14 +53,17 @@ auth = HTTPBasicAuth()
 
 app = Flask(__name__)
 
-CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
+CLIENT_ID = json.loads(open('client_secrets.json', 'r').
+                       read())['web']['client_id']
 APPLICATION_NAME = "Catalogo"
 
-engine = create_engine('sqlite:///catalogo.db', connect_args={'check_same_thread': False})
+engine = create_engine('sqlite:///catalogo.db',
+                        connect_args={'check_same_thread': False})
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# Método para verificação da email e senha
 @auth.verify_password
 def verify_password(email, password):
     user = session.query(User).filter_by(email = email).first()
@@ -69,34 +72,16 @@ def verify_password(email, password):
     g.user = user
     return True
 
-# ======== Start API Endpoint ===================
-@app.route('/user/api', methods=['GET'])
+# ======== Início dos métodos da API =============================
+
+# Retorna um JSON com os dados de todos os usuários cadastrados.
+@app.route('/user/api/', methods=['GET'])
 @auth.login_required
 def getAllUsers():
     users = session.query(User).all()
     return jsonify(Users=[i.serialize for i in users])
 
-@app.route('/user/api', methods=['POST'])
-def newUserApi():
-    username = request.json.get('username')
-    email = request.json.get('email')
-    password = request.json.get('password')
-    picture = request.json.get('picture')
-    if email is None or password is None:
-        print('Faltando argumentos: password/senha')
-        abort(400)
-    if session.query(User).filter_by(email = email).first() is not None:
-        print('E-mail já cadastrado.')
-        user = session.query(User).filter_by(email = email).first()
-        return jsonify({'message': 'Usuário já cadastrado'}), 200
-    user = User(username = username, email = email, picture = picture)
-    user.hash_password(password)
-    session.add(user)
-    session.commit()
-    return jsonify({'username': user.username,
-                    'email': user.email,
-                    'picture': user.picture}), 201
-
+# Retorna um JSON com os dados de um usuário específico.
 @app.route('/user/api/<int:user_id>', methods=['GET'])
 @auth.login_required
 def getUser(user_id):
@@ -108,34 +93,14 @@ def getUser(user_id):
                     'email': user.email,
                     'picture': user.picture})
 
-@app.route('/user/api/<int:user_id>', methods=['PUT'])
-@auth.login_required
-def updateUser(user_id):
-    username = request.json.get('username')
-    picture = request.json.get('picture')
-    updatedUser = session.query(User).filter_by(id = user_id).one()
-    if username:
-        updatedUser.username = username
-    if picture:
-        updatedUser.picture = picture
-    session.add(updatedUser)
-    session.commit()
-    return 'Usuário de id: %s atualizado com sucesso' % user_id
-
-@app.route('/user/api/<int:user_id>', methods=['DELETE'])
-@auth.login_required
-def deleteUser(user_id):
-    deletedUser = session.query(User).filter_by(id=user_id).one()
-    session.delete(deletedUser)
-    session.commit()
-    return 'Usuário de id: %s foi EXCLUÍDO com sucesso.' % user_id
-
+# Retorna um JSON com os dados de todas as categorias criadas.
 @app.route('/category/api', methods=['GET'])
 @auth.login_required
 def getAllCategories():
     categories = session.query(Category).all()
     return jsonify(Categories=[i.serialize for i in categories])
 
+# Método da API para criar uma nova categoria.
 @app.route('/category/api/<int:user_id>', methods=['POST'])
 @auth.login_required
 def makeNewCategory(user_id):
@@ -150,12 +115,14 @@ def makeNewCategory(user_id):
                     'category_description': category.category_description,
                     'user_id': category.user_id})
 
+# Retorna um JSON com os dados de uma categoria específica.
 @app.route('/category/api/<int:category_id>', methods=['GET'])
 @auth.login_required
 def getCategory(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
     return jsonify(Category=category.serialize)
 
+# Método da API para editar uma categoria
 @app.route('/category/api/<int:category_id>', methods=['PUT'])
 @auth.login_required
 def updateCategory(category_id):
@@ -171,6 +138,7 @@ def updateCategory(category_id):
     return jsonify({'category_name': category.category_name,
                     'category_description': category.category_description})
 
+# Método da API para deleter uma categoria.
 @app.route('/category/api/<int:category_id>', methods=['DELETE'])
 @auth.login_required
 def delCategory(category_id):
@@ -179,12 +147,14 @@ def delCategory(category_id):
     session.commit()
     return 'Categoria de id: %s excluída com sucesso' % category_id
 
+# Retorna um JSON com todos os itens das categorias.
 @app.route('/item/api', methods=['GET'])
 @auth.login_required
 def getAllItems():
     items = session.query(Item).all()
     return jsonify(Items=[i.serialize for i in items])
 
+# Retorna um JSON com os itens de uma categoria específica.
 @app.route('/item/api/<int:category_id>', methods=['POST'])
 @auth.login_required
 def getItems(category_id):
@@ -192,6 +162,7 @@ def getItems(category_id):
     items = session.query(Item).filter_by(category_id = category.id).all()
     return jsonify(Items=[i.serialize for i in items])
 
+# Método da API para editar um item de uma categoria.
 @app.route('/item/api/<int:item_id>', methods=['PUT'])
 @auth.login_required
 def updateItem(item_id):
@@ -215,6 +186,7 @@ def updateItem(item_id):
                     'item_short_description': item.item_short_description,
                     'price': item.price})
 
+# Método da API para excluir um item de uma categoria.
 @app.route('/item/api/<int:item_id>', methods=['DELETE'])
 @auth.login_required
 def delItem(item_id):
@@ -223,14 +195,17 @@ def delItem(item_id):
     session.commit()
     return 'O item com o id %s foi excluído com sucesso.' %item_id
 
-# ======== End API Endpoint ===================
+# ======== Fim dos Métodos da API =================================
 
+# Cria um state token antifraude e renderiza a página de Login.
 @app.route('/login')
 def showLogin():
-    state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+            for x in range(32))
     login_session['state'] = state
     return render_template('login.html', STATE=state)
 
+# Faz o Logout do usuário.
 @app.route('/disconnect')
 def disconnect():
     if 'provider' in login_session:
@@ -249,8 +224,7 @@ def disconnect():
         flash('Você ainda não está logado.')
         return redirect(url_for('showCategory'))
 
-
-
+# Faz a conexação do usuário utilizando a conta do Google.
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
     # Validate state token
@@ -321,7 +295,6 @@ def gconnect():
     login_session['username'] = data['name']
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
-    # ADD PROVIDER TO LOGIN SESSION
     login_session['provider'] = 'google'
 
     # see if user exists, if it doesn't make a new one
@@ -340,6 +313,7 @@ def gconnect():
     flash("%s - Login efetuado com sucesso" % login_session['username'])
     return output
 
+# Desconecta o usuário que estava conectado com a conta do Google.
 @app.route('/gdisconnect/')
 def gdisconnect():
     # Only disconnect a connected user.
@@ -384,6 +358,7 @@ def getUserID(email):
     except:
         return None
 
+# Apresenta as categorias criadas.
 @app.route('/')
 @app.route('/category/')
 def showCategory():
@@ -395,6 +370,7 @@ def showCategory():
         return render_template('category/show_category.html',
                                 categories=categories)
 
+# Cria uma nova categoria.
 @app.route('/category/new/', methods=['GET', 'POST'])
 def newCategory():
     if 'username' not in login_session:
@@ -411,6 +387,7 @@ def newCategory():
     else:
         return render_template('category/new_category.html')
 
+# Faz a edição de uma categoria.
 @app.route('/category/<int:category_id>/edit/', methods=['GET', 'POST'])
 def editCategory(category_id):
     editedCategory = session.query(Category).filter_by(id=category_id).one()
@@ -434,6 +411,7 @@ def editCategory(category_id):
                                 category_id = category_id,
                                 category = editedCategory)
 
+# Exclui uma categoria específica.
 @app.route('/category/<int:category_id>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_id):
     deletedCategory = session.query(Category).filter_by(id=category_id).one()
