@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding=utf-8
+
 import os
 import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
@@ -9,6 +12,7 @@ from passlib.apps import custom_app_context as pwd_context
 # Nesse arquivo temos 3 classes que geram o banco de dados
 # com as tabelas user, category e item
 Base = declarative_base()
+
 
 # Classe que gera a tabela user.
 class User(Base):
@@ -37,6 +41,7 @@ class User(Base):
             'picture':  self.picture
         }
 
+
 # Classe que gera a tabela category.
 class Category(Base):
     '''Classe para criar os campos da tabela das categorias'''
@@ -57,6 +62,7 @@ class Category(Base):
             'category_description': self.category_description,
             'user_id':              self.user_id
         }
+
 
 # Classe que gera a tabela item.
 class Item(Base):
