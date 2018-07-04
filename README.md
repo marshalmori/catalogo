@@ -64,11 +64,17 @@ Na documentação a seguir utilizaremos o `curl` para apresentar os exemplos da 
 #### Todos os usuários
 Utilizando o comando abaixo será retornado um JSON com os dados de todos os usuários cadastrados na plataforma.
 
+Exemplo:
+
 `$ curl -X GET http://localhost:5000/user/api`
 
 
 #### Usuário específico
 Utilizando o comando abaixo será retornado um JSON com os dados de um usuário específico.
+
+`$ curl -i -X GET http://localhost:5000/user/api/<id_do_usuario>`
+
+Exemplo:
 
 `$ curl -i -X GET http://localhost:5000/user/api/1`
 
@@ -78,26 +84,44 @@ Utilizando o comando abaixo será retornado um JSON com os dados de um usuário 
 #### Todas as categorias
 Com a linha abaixo será retornado todas as categorias presentes na plataforma
 
+Exemplo:
+
 `$ curl -X GET http://localhost:5000/category/api`
 
 
 #### Nova categoria
 Para criar uma nova categoria basta utilizar a estrutura do exemplo abaixo.
 
+`$ curl -i -X POST -H "Content-Type: application/json" -d '{"category_name":"<nome_da_categoria>", "category_description":"<uma_descrição>"}' http://localhost:5000/category/api/<id_da_categoria>`
+
+Exemplo:
+
 `$ curl -i -X POST -H "Content-Type: application/json" -d '{"category_name":"Outra Categoria", "category_description":"Uma descrição qualquer aqui"}' http://localhost:5000/category/api/1`
 
 #### Categoria específica
 Retorna os dados de uma categoria específica
+
+`$ curl http://localhost:5000/category/api/<id_da_categoria>`
+
+Exemplo:
 
 `$ curl http://localhost:5000/category/api/1`
 
 #### Editar categoria
 Para editar uma categoria basta utilizar a estrutura do exemplo abaixo.
 
+`$ curl -X PUT -H "Content-Type: application/json" -d '{"category_name":"<nome_da_categoria>", "category_description":"<descrição_da_categoria>"}' http://localhost:5000/category/api/<id_da_categoria>`
+
+Exemplo:
+
 `$ curl -X PUT -H "Content-Type: application/json" -d '{"category_name":"Tasaki", "category_description":"Categoria alterada para Tasaki"}' http://localhost:5000/category/api/1`
 
 #### Deletar categoria
 Para excluir uma categoria basta utilizar a estrutura do exemplo abaixo.
+
+`$ curl -i -X DELETE http://localhost:5000/category/api/<id_da_categoria>`
+
+Exemplo:
 
 `$ curl -i -X DELETE http://localhost:5000/category/api/1`
 
@@ -106,22 +130,36 @@ Para excluir uma categoria basta utilizar a estrutura do exemplo abaixo.
 #### Todos os itens
 Retorna todos os itens cadastrados na plataforma.
 
+Exemplo:
+
 `$ curl -X GET http://localhost:5000/item/api`
 
 
 #### Todos os itens de uma determinada categoria
 Retorna todos os itens de uma determinada categoria.
 
+`$ curl -X POST http://localhost:5000/item/api/<id_da_categoria>`
+
+Exemplo:
+
 `$ curl -X POST http://localhost:5000/item/api/1`
 
 #### Atualizar um item específico
 Para atualizar um item específico basta utilizar a estrura do exemplo abaixo.
+
+`$ curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"<nome_do_item>", "item_long_description":"<descrição_longa>", "item_short_description":"<descrição_curta>", "price":"70.00"}' http://localhost:5000/item/api/<id_do_item>`
+
+Exemplo:
 
 `$ curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"Tasaki", "item_long_description":"Uma descrição longa aqui.", "item_short_description":"Uma descrição curta aqui.", "price":"70.00"}' http://localhost:5000/item/api/1`
 
 
 #### Excluir um item específico
 Para excluir um item específico basta utilizar a estrutura do exemplo abaixo.
+
+`$ curl -X DELETE http://localhost:5000/item/api/<id_do_item>`
+
+Exemplo:
 
 `$ curl -X DELETE http://localhost:5000/item/api/1`
 

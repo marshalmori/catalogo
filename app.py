@@ -34,21 +34,20 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-# Método para verificação da email e senha
-@auth.verify_password
-def verify_password(email, password):
-    user = session.query(User).filter_by(email=email).first()
-    if not user or not user.verify_password(password):
-        return False
-    g.user = user
-    return True
+# Método para verificação do email e senha
+# @auth.verify_password
+# def verify_password(email, password):
+#     user = session.query(User).filter_by(email=email).first()
+#     if not user or not user.verify_password(password):
+#         return False
+#     g.user = user
+#     return True
 
 # ======== Início dos métodos da API =============================
 
 
 # Retorna um JSON com os dados de todos os usuários cadastrados.
 @app.route('/user/api/', methods=['GET'])
-@auth.login_required
 def getAllUsers():
     users = session.query(User).all()
     return jsonify(Users=[i.serialize for i in users])
@@ -56,7 +55,6 @@ def getAllUsers():
 
 # Retorna um JSON com os dados de um usuário específico.
 @app.route('/user/api/<int:user_id>', methods=['GET'])
-@auth.login_required
 def getUser(user_id):
     user = session.query(User).filter_by(id=user_id).one()
     if not user:
@@ -69,7 +67,6 @@ def getUser(user_id):
 
 # Retorna um JSON com os dados de todas as categorias criadas.
 @app.route('/category/api', methods=['GET'])
-@auth.login_required
 def getAllCategories():
     categories = session.query(Category).all()
     return jsonify(Categories=[i.serialize for i in categories])
@@ -77,7 +74,6 @@ def getAllCategories():
 
 # Método da API para criar uma nova categoria.
 @app.route('/category/api/<int:user_id>', methods=['POST'])
-@auth.login_required
 def makeNewCategory(user_id):
     category_name = request.json.get('category_name')
     category_description = request.json.get('category_description')
@@ -93,7 +89,6 @@ def makeNewCategory(user_id):
 
 # Retorna um JSON com os dados de uma categoria específica.
 @app.route('/category/api/<int:category_id>', methods=['GET'])
-@auth.login_required
 def getCategory(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     return jsonify(Category=category.serialize)
@@ -101,7 +96,6 @@ def getCategory(category_id):
 
 # Método da API para editar uma categoria
 @app.route('/category/api/<int:category_id>', methods=['PUT'])
-@auth.login_required
 def updateCategory(category_id):
     category_name = request.json.get('category_name')
     category_description = request.json.get('category_description')
@@ -118,7 +112,6 @@ def updateCategory(category_id):
 
 # Método da API para deleter uma categoria.
 @app.route('/category/api/<int:category_id>', methods=['DELETE'])
-@auth.login_required
 def delCategory(category_id):
     deletedCategory = session.query(Category).filter_by(id=category_id).one()
     session.delete(deletedCategory)
@@ -128,7 +121,6 @@ def delCategory(category_id):
 
 # Retorna um JSON com todos os itens das categorias.
 @app.route('/item/api', methods=['GET'])
-@auth.login_required
 def getAllItems():
     items = session.query(Item).all()
     return jsonify(Items=[i.serialize for i in items])
@@ -136,7 +128,6 @@ def getAllItems():
 
 # Retorna um JSON com os itens de uma categoria específica.
 @app.route('/item/api/<int:category_id>', methods=['POST'])
-@auth.login_required
 def getItems(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     items = session.query(Item).filter_by(category_id=category.id).all()
@@ -145,7 +136,6 @@ def getItems(category_id):
 
 # Método da API para editar um item de uma categoria.
 @app.route('/item/api/<int:item_id>', methods=['PUT'])
-@auth.login_required
 def updateItem(item_id):
     item = session.query(Item).filter_by(id=item_id).one()
     item_name = request.json.get('item_name')
@@ -170,7 +160,6 @@ def updateItem(item_id):
 
 # Método da API para excluir um item de uma categoria.
 @app.route('/item/api/<int:item_id>', methods=['DELETE'])
-@auth.login_required
 def delItem(item_id):
     item = session.query(Item).filter_by(id=item_id).one()
     session.delete(item)
