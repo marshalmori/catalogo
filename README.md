@@ -147,7 +147,7 @@ Exemplo:
 #### Atualizar um item específico
 Para atualizar um item específico basta utilizar a estrura do exemplo abaixo.
 
-`$ curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"<nome_do_item>", "item_long_description":"<descrição_longa>", "item_short_description":"<descrição_curta>", "price":"70.00"}' http://localhost:5000/item/api/<id_do_item>`
+`$ curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"<nome_do_item>", "item_long_description":"<descrição_longa>", "item_short_description":"<descrição_curta>", "price":"<preço_do_item>"}' http://localhost:5000/item/api/<id_do_item>`
 
 Exemplo:
 
