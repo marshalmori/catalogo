@@ -34,14 +34,14 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-# Método para verificação do email e senha
-# @auth.verify_password
-# def verify_password(email, password):
-#     user = session.query(User).filter_by(email=email).first()
-#     if not user or not user.verify_password(password):
-#         return False
-#     g.user = user
-#     return True
+Método para verificação do email e senha
+@auth.verify_password
+def verify_password(email, password):
+    user = session.query(User).filter_by(email=email).first()
+    if not user or not user.verify_password(password):
+        return False
+    g.user = user
+    return True
 
 # ======== Início dos métodos da API =============================
 
