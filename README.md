@@ -120,7 +120,7 @@ Para atualizar um item específico basta utilizar a estrura do exemplo abaixo.
 `$ curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"Tasaki", "item_long_description":"Uma descrição longa aqui.", "item_short_description":"Uma descrição curta aqui.", "price":"70.00"}' http://localhost:5000/item/api/1`
 
 
-#### Exclui um item específico
+#### Excluir um item específico
 Para excluir um item específico basta utilizar a estrutura do exemplo abaixo.
 
 `$ curl -X DELETE http://localhost:5000/item/api/1`
