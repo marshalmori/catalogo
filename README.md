@@ -70,7 +70,7 @@ Utilizando o comando abaixo será retornado um JSON com os dados de todos os usu
 #### Usuário específico
 Utilizando o comando abaixo será retornado um JSON com os dados de um usuário específico.
 
-`$ curl -i -X GET http://localhost:5000/user/api/11`
+`$ curl -i -X GET http://localhost:5000/user/api/1`
 
 
 ### Requisitar dados das categorias
@@ -84,7 +84,7 @@ Com a linha abaixo será retornado todas as categorias presentes na plataforma
 #### Nova categoria
 Para criar uma nova categoria basta utilizar a estrutura do exemplo abaixo.
 
-`$ curl -i -X POST -H "Content-Type: application/json" -d '{"category_name":"Outra Categoria", "category_description":"Uma descrição qualquer aqui"}' http://localhost:5000/category/api/12`
+`$ curl -i -X POST -H "Content-Type: application/json" -d '{"category_name":"Outra Categoria", "category_description":"Uma descrição qualquer aqui"}' http://localhost:5000/category/api/1`
 
 #### Categoria específica
 Retorna os dados de uma categoria específica
@@ -94,23 +94,36 @@ Retorna os dados de uma categoria específica
 #### Editar categoria
 Para editar uma categoria basta utilizar a estrutura do exemplo abaixo.
 
-`$ curl -X PUT -H "Content-Type: application/json" -d '{"category_name":"Tasaki", "category_description":"Categoria alterada para Tasaki"}' http://localhost:5000/category/api/12`
+`$ curl -X PUT -H "Content-Type: application/json" -d '{"category_name":"Tasaki", "category_description":"Categoria alterada para Tasaki"}' http://localhost:5000/category/api/1`
 
 #### Deletar categoria
 Para excluir uma categoria basta utilizar a estrutura do exemplo abaixo.
 
-`$ curl -i -X DELETE http://localhost:5000/category/api/12`
+`$ curl -i -X DELETE http://localhost:5000/category/api/1`
 
 ### Requisitar dados dos itens
 
-# Requisição de todos os itens
-# curl -u marshalmori@gmail.com:1234 -X GET http://localhost:5000/item/api
-# Requisiçao de todos os itens de uma determinada categoria
-# curl -u marshalmori@gmail.com:1234 -X POST http://localhost:5000/item/api/1
-# Update de um item específico - updateItem(item_id)
-# curl -u marshalmori@gmail.com:1234 -X PUT -H "Content-Type: application/json" -d '{"item_name":"Tasaki", "item_long_description":"CCCCCCCCCCCCCC CCCCCCCC CCCCCCCCC CCCCCCCCCCCCCCCC CCCCCCCCCCCC CCCCCCCCCC", "item_short_description":"CCCCCC CCCCCC CCCCC CCC", "price":"70.00"}' http://localhost:5000/item/api/1
-# Exclui um item específico
-# curl -u marshalmori@gmail.com:1234 -X DELETE http://localhost:5000/item/api/1
+#### Todos os itens
+Retorna todos os itens cadastrados na plataforma.
+
+`$ curl -X GET http://localhost:5000/item/api`
+
+
+#### Todos os itens de uma determinada categoria
+Retorna todos os itens de uma determinada categoria.
+
+`$ curl -X POST http://localhost:5000/item/api/1`
+
+#### Atualizar um item específico
+Para atualizar um item específico basta utilizar a estrura do exemplo abaixo.
+
+`$ curl -X PUT -H "Content-Type: application/json" -d '{"item_name":"Tasaki", "item_long_description":"Uma descrição longa aqui.", "item_short_description":"Uma descrição curta aqui.", "price":"70.00"}' http://localhost:5000/item/api/1`
+
+
+#### Exclui um item específico
+Para excluir um item específico basta utilizar a estrutura do exemplo abaixo.
+
+`$ curl -X DELETE http://localhost:5000/item/api/1`
 
 ## Licença
 O projeto Análise de Logs foi lançado com a licença [MIT
