@@ -56,6 +56,62 @@ Apresentar os itens criados de cada categoria é só clicar sobre o nome ou imag
 ### Descrição de um item específico
 Ao clicar sobre o nome ou imagem de um item específico será apresentado um tela semelhante à mostrada abaixo.
 ![Itens de uma categoria](static/images/readme/desc_item.png)
+
+## Utilizar a API
+Na documentação a seguir utilizaremos o `curl` para apresentar os exemplos da utilização da API.
+
+### Requisitar dados dos usuários
+#### Todos os usuários
+Utilizando o comando abaixo será retornado um JSON com os dados de todos os usuários cadastrados na plataforma.
+
+`$ curl -X GET http://localhost:5000/user/api`
+
+
+#### Usuário específico
+Utilizando o comando abaixo será retornado um JSON com os dados de um usuário específico.
+
+`$ curl -i -X GET http://localhost:5000/user/api/11`
+
+
+### Requisitar dados das categorias
+
+#### Todas as categorias
+Com a linha abaixo será retornado todas as categorias presentes na plataforma
+
+`$ curl -X GET http://localhost:5000/category/api`
+
+
+#### Nova categoria
+Para criar uma nova categoria basta utilizar a estrutura do exemplo abaixo.
+
+`$ curl -i -X POST -H "Content-Type: application/json" -d '{"category_name":"Outra Categoria", "category_description":"Uma descrição qualquer aqui"}' http://localhost:5000/category/api/12`
+
+#### Categoria específica
+Retorna os dados de uma categoria específica
+
+`$ curl http://localhost:5000/category/api/1`
+
+#### Editar categoria
+Para editar uma categoria basta utilizar a estrutura do exemplo abaixo.
+
+`$ curl -X PUT -H "Content-Type: application/json" -d '{"category_name":"Tasaki", "category_description":"Categoria alterada para Tasaki"}' http://localhost:5000/category/api/12`
+
+#### Deletar categoria
+Para excluir uma categoria basta utilizar a estrutura do exemplo abaixo.
+
+`$ curl -i -X DELETE http://localhost:5000/category/api/12`
+
+### Requisitar dados dos itens
+
+# Requisição de todos os itens
+# curl -u marshalmori@gmail.com:1234 -X GET http://localhost:5000/item/api
+# Requisiçao de todos os itens de uma determinada categoria
+# curl -u marshalmori@gmail.com:1234 -X POST http://localhost:5000/item/api/1
+# Update de um item específico - updateItem(item_id)
+# curl -u marshalmori@gmail.com:1234 -X PUT -H "Content-Type: application/json" -d '{"item_name":"Tasaki", "item_long_description":"CCCCCCCCCCCCCC CCCCCCCC CCCCCCCCC CCCCCCCCCCCCCCCC CCCCCCCCCCCC CCCCCCCCCC", "item_short_description":"CCCCCC CCCCCC CCCCC CCC", "price":"70.00"}' http://localhost:5000/item/api/1
+# Exclui um item específico
+# curl -u marshalmori@gmail.com:1234 -X DELETE http://localhost:5000/item/api/1
+
 ## Licença
 O projeto Análise de Logs foi lançado com a licença [MIT
 license](https://github.com/atom-community/markdown-preview-plus/blob/master/LICENSE.md).
