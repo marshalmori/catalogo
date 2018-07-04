@@ -126,5 +126,5 @@ Para excluir um item específico basta utilizar a estrutura do exemplo abaixo.
 `$ curl -X DELETE http://localhost:5000/item/api/1`
 
 ## Licença
-O projeto Análise de Logs foi lançado com a licença [MIT
+O projeto Catálogo foi lançado com a licença [MIT
 license](https://github.com/atom-community/markdown-preview-plus/blob/master/LICENSE.md).
