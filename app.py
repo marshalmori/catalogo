@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf-8
+# -*- coding: utf-8 -*-
 
 from flask import (Flask, render_template, request, redirect, url_for,
                    jsonify, abort, g, flash)
@@ -34,7 +34,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-Método para verificação do email e senha
+# Método para verificação do email e senha
 @auth.verify_password
 def verify_password(email, password):
     user = session.query(User).filter_by(email=email).first()
@@ -229,7 +229,8 @@ def gconnect():
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
            % access_token)
     h = httplib2.Http()
-    result = json.loads(h.request(url, 'GET')[1])
+    # result = json.loads(h.request(url, 'GET')[1])
+    result = json.loads(h.request(url, 'GET')[1].decode('utf-8'))
     # If there was an error in the access token info, abort.
     if result.get('error') is not None:
         response = make_response(json.dumps(result.get('error')), 500)
@@ -342,17 +343,17 @@ def createUser(login_session):
 
 # Retorna as informações do usuário que se cadastrou com a conta do Google
 def getUserInfo(user_id):
-    user = session.query(User).filter_by(id=user_id).one()
+    user = session.query(User).filter_by(id=user_id).one_or_none()
     return user
 
 
-# Retorna o id do usuário caso esteja cadastrado, senão retorn None
+# Retorna o id do usuário caso esteja cadastrado, senão retorna None
 def getUserID(email):
     try:
         user = session.query(User).filter_by(email=email).one()
         return user.id
-    except e:
-        return None
+    except Exception:
+        return Exception
 
 
 # Apresenta as categorias criadas.

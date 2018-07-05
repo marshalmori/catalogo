@@ -4,7 +4,8 @@ Esta aplicação feita em Python, utilizando o framework Flask, é um catálogo 
 
 
 ## Instalação
-Abaixo temos os passos necessários para conseguir rodar a aplicação:
+Abaixo temos os passos necessários para conseguir rodar a aplicação, lembrando
+que nesse projeto foi utilizado o Python 3.6 como versão:
 
 1. **Instalar os pacotes utilizados no projeto** - utilizando o `pip` instale os seguintes pacotes mostrados abaixo:
     * `$ pip install Flask`
