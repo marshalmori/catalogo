@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
 import os
 import sys
@@ -56,7 +56,7 @@ class Category(Base):
     @property
     def serialize(self):
         '''Retorna os dados de um objeto serializado'''
-        return {
+        return{
             'id':                   self.id,
             'category_name':        self.category_name,
             'category_description': self.category_description,
@@ -93,5 +93,6 @@ class Item(Base):
         }
 
 
-engine = create_engine('sqlite:///catalogo.db')
+# engine = create_engine('sqlite:///catalogo.db')
+engine = create_engine('postgresql://marshal:601077@localhost/catalogo')
 Base.metadata.create_all(engine)

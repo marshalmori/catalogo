@@ -21,27 +21,27 @@ auth = HTTPBasicAuth()
 
 app = Flask(__name__)
 
-CLIENT_ID = json.loads(open('client_secrets.json', 'r').
-                       read())['web']['client_id']
+CLIENT_ID = json.loads(open('client_secrets.json', 'r', ).read())['web']['client_id']
 APPLICATION_NAME = "Catalogo"
 
-engine = create_engine(
-                        'sqlite:///catalogo.db',
-                        connect_args={'check_same_thread': False}
-                      )
+# engine = create_engine(
+#                         'sqlite:///catalogo.db',
+#                         connect_args={'check_same_thread': False}
+#                       )
+engine = create_engine('postgresql:///marshal:601077@localhost/catalogo')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
 # Método para verificação do email e senha
-@auth.verify_password
-def verify_password(email, password):
-    user = session.query(User).filter_by(email=email).first()
-    if not user or not user.verify_password(password):
-        return False
-    g.user = user
-    return True
+# @auth.verify_password
+# def verify_password(email, password):
+#     user = session.query(User).filter_by(email=email).first()
+#     if not user or not user.verify_password(password):
+#         return False
+#     g.user = user
+#     return True
 
 # ======== Início dos métodos da API =============================
 
