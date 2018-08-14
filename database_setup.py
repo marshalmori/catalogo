@@ -92,7 +92,7 @@ class Item(Base):
             'category_id': self.category_id
         }
 
-
-# engine = create_engine('sqlite:///catalogo.db')
-engine = create_engine('postgresql://marshal:601077@localhost/catalogo')
-Base.metadata.create_all(engine)
+def create_db(db):
+    # engine = create_engine('sqlite:///catalogo.db')
+    engine = create_engine(db)
+    Base.metadata.create_all(engine)
