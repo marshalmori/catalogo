@@ -353,7 +353,7 @@ def getUserID(email):
         user = session.query(User).filter_by(email=email).one()
         return user.id
     except Exception:
-        return Exception
+        return None
 
 
 # Apresenta as categorias criadas.
