@@ -22,7 +22,7 @@ auth = HTTPBasicAuth()
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
-APPLICATION_NAME = "Catalogo"
+# APPLICATION_NAME = "Catalogo"
 
 # engine = create_engine(
 #                         'sqlite:///catalogo.db',
