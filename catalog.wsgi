@@ -1,5 +1,6 @@
 activate_this = '/var/www/catalogo/catalogo/venv/bin/activate_this.py'
-execfile(activate_this, dict(__file__=activate_this))
+# execfile(activate_this, dict(__file__=activate_this))
+exec(open(activate_this).read())
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
