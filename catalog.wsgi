@@ -6,6 +6,6 @@ import logging
 logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0, '/var/www/projeto-web/')
 
-from projeto-web import app as application
+from app import app as application
 
 application.secret_key = 'marshalmori'  # This needs changing in production env
