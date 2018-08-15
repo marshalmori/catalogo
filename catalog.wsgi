@@ -4,10 +4,8 @@
 import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0, '/srv/projeto-web/catalogo/catalog')
+sys.path.insert(0, '/var/www/projeto-web/')
 
 from catalogo import app as application
-
-
 
 application.secret_key = 'marshalmori'  # This needs changing in production env
