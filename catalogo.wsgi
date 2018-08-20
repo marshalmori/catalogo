@@ -13,5 +13,5 @@ import logging
 logging.basicConfig(stream=sys.stderr)
 sys.path.append("/var/www/html/catalogo")
 
-from catalogo import app as application
+from .catalogo import app as application
 application.secret_key = '12345'
