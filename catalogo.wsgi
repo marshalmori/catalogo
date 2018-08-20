@@ -1,4 +1,4 @@
-activate_this = '/var/www/catalogo/venv/bin/activate_this.py'
+activate_this = '/var/www/html/catalogo/venv/bin/activate_this.py'
 # execfile(activate_this, dict(__file__=activate_this))
 # exec(open(activate_this).read())
 
@@ -11,7 +11,7 @@ with open(activate_this) as file_:
 import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
-sys.path.append("/var/www/catalogo")
+sys.path.append("/var/www/html/catalogo")
 
 from catalogo import app as application
 application.secret_key = '12345'
