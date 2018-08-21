@@ -11,7 +11,7 @@ with open(activate_this) as file_:
 import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
-sys.path.append("/var/www/html/catalogo/")
+sys.path.append("/var/www/html/")
 
 from catalogo import app as application
 application.secret_key = '12345'
