@@ -8,10 +8,11 @@ with open(activate_this) as file_:
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys, os
+import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
-sys.path.append("/var/www/html/catalogo/")
+sys.path.insert(0, "/var/www/html/catalogo")
+# sys.path.append("/var/www/html/catalogo/")
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__))))
 
 
