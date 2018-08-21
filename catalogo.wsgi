@@ -12,7 +12,8 @@ import sys, os
 import logging
 logging.basicConfig(stream=sys.stderr)
 # sys.path.append("/var/www/html/catalogo/")
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__))))
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__))))
+sys.path.insert(0, "/var/www/html/catalogo/")
 
 
 from catalogo import app as application
